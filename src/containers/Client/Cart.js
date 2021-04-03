@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { clearAllItems, increaseItem, decreaseItem } from '../../store/client/actions/cartActions'
+import { clearAllItems, increaseItem, decreaseItem, removeItem } from '../../store/client/actions/cartActions'
 
 const Cart = (props) => {
 
@@ -29,7 +29,7 @@ const Cart = (props) => {
                         >+</button>
                     </td>
                     <td>{item.price * item.quantity}</td>
-                    <td><button className="btn btn-danger">x</button></td>
+                    <td><button className="btn btn-danger" onClick={() => dispatch(removeItem(item))}>x</button></td>
                 </tr>
             )
         })

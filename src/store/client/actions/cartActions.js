@@ -87,6 +87,24 @@ export const addItem = (product) => {
     }
 }
 
+export const removeItem = (product) => {
+    return (dispatch, getState) => {
+        const { cart } = getState().cartReducers;
+        const idx = cart.findIndex(item => item.productID === product.productID)
+
+        if (idx !== -1) {
+            axios.delete(`https://6067db8898f405001728f139.mockapi.io/cart/${idx + 1}`, product).then((response) => {
+                dispatch(getDataRequest())
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
+
+        return
+    }
+
+}
+
 
 
 export const increaseItem = (product) => {
