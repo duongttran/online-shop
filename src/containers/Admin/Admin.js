@@ -4,6 +4,9 @@ import { increaseItem, decreaseItem, removeItem, addNewProduct } from '../../sto
 
 import { fetchDataRequest } from '../../store/client/actions/clientActions'
 
+import Modal from './Modal'
+
+
 const Admin = (props) => {
 
   const [productName, setProductName] = useState("")
@@ -12,6 +15,8 @@ const Admin = (props) => {
   const [quantity, setQuantity] = useState("")
   const [productID, setProductID] = useState("")
 
+  const [editProduct, setEditProduct] = useState({})
+
   const productList = useSelector(state => state.cRed.products);
   const dispatch = useDispatch()
 
@@ -19,8 +24,12 @@ const Admin = (props) => {
     dispatch(fetchDataRequest())
   }, [])
 
+  const renderModal = () => {
 
-  const renderCart = () => {
+    return <Modal />
+  }
+
+  const renderProductList = () => {
     return productList.map((item, idx) => {
       return (
         <tr key={idx}>
@@ -38,23 +47,32 @@ const Admin = (props) => {
           <td>{item.price * item.quantity}</td>
           <td>
             <button className="btn btn-danger" onClick={() => dispatch(removeItem(item))}>x</button>
-            <button className="btn btn-warning"><i className="fas fa-pen"></i></button></td>
+            <button className="btn btn-warning" onClick={renderModal(item)}><i className="fas fa-pen"></i></button></td>
         </tr>
       )
     })
   }
 
-  /* const onSubmit = (e) => {
-    e.preventDefault()
-    console.log("add new product", { productName, imageLink, price, quantity, productID })
-  } */
 
-  const newProduct = { productName, imageLink, price, quantity, productID }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const newProduct = {
+      name: productName,
+      image: imageLink,
+      price: parseInt(price),
+      quantity: parseInt(quantity),
+      productID,
+    };
+    dispatch(addNewProduct(newProduct));
+  };
+
+
 
   return (
 
     <div className="container">
-      <div className="row">
+      <div className="row mt-5 mb-5">
 
         <h1 className="">Admin page</h1>
         <table className="table table-bordered">
@@ -70,15 +88,15 @@ const Admin = (props) => {
             </tr>
           </thead>
           <tbody>
-            {renderCart()}
+            {renderProductList()}
           </tbody>
         </table>
 
-        <h3>Add Product List</h3>
+        <h3>Add Product to List</h3>
 
         <form>
           <div className="form-group">
-            <label for="productName">Product Name</label>
+            <label>Product Name</label>
             <input
               type="text"
               name="productName"
@@ -105,10 +123,11 @@ const Admin = (props) => {
               placeholder="Product ID"
               onChange={(e) => setProductID(e.target.value)} />
             {/* <button className="btn btn-primary" onClick={(e) => onSubmit(e)}>Submit</button> */}
-            <button className="btn btn-primary" onClick={() => dispatch(addNewProduct(newProduct))}>Submit</button>
-
+            <button className="btn btn-primary" onClick={(e) => onSubmit(e)}>Submit</button>
+            {renderModal()}
           </div>
         </form>
+
 
 
 
