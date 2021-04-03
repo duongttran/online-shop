@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/note.js
+/README.md
 
 # testing
 /coverage
