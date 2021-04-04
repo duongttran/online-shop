@@ -1,3 +1,7 @@
 .logo {
     width: 100px;
 }
+
+.navigation {
+    max-height: 80px!important;
+}

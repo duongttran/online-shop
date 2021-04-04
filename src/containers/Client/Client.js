@@ -6,9 +6,14 @@ import Product from './Product'
 const Client = (props) => {
     return (
         <div>
-            <p>Client page</p>
-            <Cart />
-            <Product />
+            <div className="container">
+                <div className="row mt-5 mb-5">
+                    <h1>Client page</h1>
+                    <Cart />
+                    <Product />
+                </div>
+            </div>
+
         </div>
     )
 }

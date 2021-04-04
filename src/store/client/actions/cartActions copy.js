@@ -49,24 +49,27 @@ export const updateCart = (id, productUpdate) => {
 export const addItem = (product) => {
     console.log('product', product)
     return (dispatch, getState) => {
+        //dispatch({ type: 'Start' })
 
         const { cart } = getState().cartReducers;
         const object = cart.find((item) => item.productID === product.productID);
+        const idx = object.id
 
         if (object === undefined) {
-            console.log("didn't found object, product added")
+
+        }
+
+        if (idx !== undefined) {
+            dispatch(updateCart(idx, { ...product, quantity: parseInt(product.quantity) + 1 }))
+            //dispatch(getDataRequest())
+        } else {
             axios.post('https://6067db8898f405001728f139.mockapi.io/cart/', product)
                 .then((response) => {
                     dispatch(getDataRequest())
                 }).catch((error) => {
                     console.log(error)
                 })
-        } else {
-            console.log("object found! increase quantity!")
-            const idx = object.id
-            dispatch(updateCart(idx, { ...product, quantity: parseInt(product.quantity) + 1 }))
         }
-
 
         /* if (idx === -1) {
             axios.post('https://6067db8898f405001728f139.mockapi.io/cart/', product)
@@ -91,20 +94,21 @@ export const addItem = (product) => {
 export const removeItem = (product) => {
     return (dispatch, getState) => {
         const { cart } = getState().cartReducers;
-        const object = cart.find(item => item.productID === product.productID)
+        const idx = cart.findIndex(item => item.productID === product.productID)
 
-        if (object !== undefined) { //object found
-            const idx = object.id
-            axios.delete(`https://6067db8898f405001728f139.mockapi.io/cart/${idx}`, product).then((response) => {
+        if (idx !== -1) {
+            axios.delete(`https://6067db8898f405001728f139.mockapi.io/cart/${idx + 1}`, product).then((response) => {
                 dispatch(getDataRequest())
             }).catch((error) => {
                 console.log(error)
             })
         }
+
         return
     }
 
 }
+
 
 
 export const increaseItem = (product) => {
@@ -113,10 +117,9 @@ export const increaseItem = (product) => {
         //dispatch({ type: 'increase' })
 
         const { cart } = getState().cartReducers;
-        const object = cart.find((item) => item.productID === product.productID);
+        const idx = cart.findIndex((item) => item.productID === product.productID);
 
-        if (object !== undefined) {
-            const idx = object.id
+        if (idx !== -1) {
             dispatch(updateCart(idx, { ...product, quantity: parseInt(product.quantity) + 1 }))
             //dispatch(getDataRequest())
         }
@@ -130,10 +133,9 @@ export const decreaseItem = (product) => {
         //dispatch({ type: 'decrease' })
 
         const { cart } = getState().cartReducers;
-        const object = cart.find((item) => item.productID === product.productID);
+        const idx = cart.findIndex((item) => item.productID === product.productID);
 
-        if (object !== undefined) {
-            const idx = object.id
+        if (idx !== -1) {
             dispatch(updateCart(idx, { ...product, quantity: parseInt(product.quantity) - 1 }))
             //dispatch(getDataRequest())
         }

@@ -1,0 +1,41 @@
+[{
+        "id": "1",
+        "name": "iPhone 12 Pro Max 128GB",
+        "image": "https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg",
+        "quantity": 1,
+        "price": 31990000,
+        "productID": "productID 1"
+    },
+    {
+        "id": "2",
+        "name": "Samsung Galaxy A02s",
+        "image": "https://cdn.tgdd.vn/Products/Images/42/230525/samsung-galaxy-a02s-den-600x600-600x600.jpg",
+        "quantity": 1,
+        "price": 2690000,
+        "productID": "productID 2"
+    },
+    {
+        "id": "3",
+        "name": "Xiaomi Redmi 9T",
+        "image": "https://cdn.tgdd.vn/Products/Images/42/233130/xiaomi-redmi-9t-6gb-110621-080650-600x600.jpg",
+        "quantity": 1,
+        "price": 4690000,
+        "productID": "productID 3"
+    },
+    {
+        "id": "4",
+        "name": "Samsung Galaxy A52/A72",
+        "image": "https://cdn.tgdd.vn/2021/03/campaign/1-640x803.png",
+        "quantity": 1,
+        "price": 31990000,
+        "productID": "productID 4"
+    },
+    {
+        "id": "5",
+        "name": "iPhone 12 128GB",
+        "image": "https://cdn.tgdd.vn/Products/Images/42/228736/iphone-12-trang-new-600x600-600x600.jpg",
+        "quantity": 1,
+        "price": 2690000,
+        "productID": "productID 5"
+    }
+]

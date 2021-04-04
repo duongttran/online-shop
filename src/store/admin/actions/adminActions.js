@@ -5,7 +5,7 @@ import { fetchDataRequest } from '../../client/actions/clientActions'
 
 export const updateProductList = (id, productUpdate) => {
     return dispatch => {
-        axios.put(`https://6067db8898f405001728f139.mockapi.io/product/${id + 1}`, productUpdate)
+        axios.put(`https://6067db8898f405001728f139.mockapi.io/product/${id}`, productUpdate)
             .then(res => {
                 dispatch(fetchDataRequest())
             }).catch(err => {
@@ -17,14 +17,14 @@ export const updateProductList = (id, productUpdate) => {
 export const increaseItem = (product) => {
     console.log('product', product)
     return (dispatch, getState) => {
-        //dispatch({ type: 'increase' })
 
         const { products } = getState().cRed;
-        const idx = products.findIndex((item) => item.productID === product.productID);
+        const object = products.find((item) => item.productID === product.productID);
 
-        if (idx !== -1) {
+        if (object !== undefined) {
+            const idx = object.id
             dispatch(updateProductList(idx, { ...product, quantity: parseInt(product.quantity) + 1 }))
-            //dispatch(fetchDataRequest())
+
         }
         return
     }
@@ -33,13 +33,16 @@ export const increaseItem = (product) => {
 export const decreaseItem = (product) => {
     console.log('product', product)
     return (dispatch, getState) => {
+        //dispatch({ type: 'increase' })
 
         const { products } = getState().cRed;
-        const idx = products.findIndex((item) => item.productID === product.productID);
+        const object = products.find((item) => item.productID === product.productID);
 
-        if (idx !== -1) {
+
+        if (object !== undefined) {
+            const idx = object.id
             dispatch(updateProductList(idx, { ...product, quantity: parseInt(product.quantity) - 1 }))
-            //dispatch(fetchDataRequest())
+            //dispatch(getDataRequest())
         }
         return
     }
@@ -48,16 +51,16 @@ export const decreaseItem = (product) => {
 export const removeItem = (product) => {
     return (dispatch, getState) => {
         const { products } = getState().cRed;
-        const idx = products.findIndex((item) => item.productID === product.productID);
+        const object = products.find((item) => item.productID === product.productID);
 
-        if (idx !== -1) {
-            axios.delete(`https://6067db8898f405001728f139.mockapi.io/product/${idx + 1}`, product).then((response) => {
+        if (object !== undefined) { //object found
+            const idx = object.id
+            axios.delete(`https://6067db8898f405001728f139.mockapi.io/product/${idx}`, product).then((response) => {
                 dispatch(fetchDataRequest())
             }).catch((error) => {
                 console.log(error)
             })
         }
-
         return
     }
 
@@ -74,4 +77,8 @@ export const addNewProduct = (newProduct) => {
                 console.log(error)
             })
     }
+}
+
+export const editProduct = (newProductUpdate) => {
+    console.log(newProductUpdate)
 }

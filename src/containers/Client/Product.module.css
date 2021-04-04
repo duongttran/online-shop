@@ -8,3 +8,8 @@
     padding: 30px;
     min-height: 370px;
 }
+
+button {
+    margin-left: 5px;
+    margin-right: 5px;
+}

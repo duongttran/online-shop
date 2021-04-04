@@ -35,7 +35,7 @@ const Product = () => {
 
   return (
     <div className="container">
-      <div className="row" style={{ margin: "30px" }}>
+      <div className="row">
         {displayProduct()}
       </div>
     </div>
