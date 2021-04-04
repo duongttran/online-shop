@@ -79,6 +79,17 @@ export const addNewProduct = (newProduct) => {
     }
 }
 
-export const editProduct = (newProductUpdate) => {
-    console.log(newProductUpdate)
+export const editProduct = (product) => {
+    return (dispatch, getState) => {
+        const { products } = getState().cRed;
+        const object = products.find((item) => item.productID === product.productID);
+
+        if (object !== undefined) {
+            const idx = object.id
+            dispatch(updateProductList(idx, { ...product }))
+            //dispatch(getDataRequest())
+        }
+        return
+    }
+
 }

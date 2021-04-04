@@ -27,7 +27,7 @@ function Modal(props) {
             productID,
         }
         console.log(newProductUpdate)
-        //dispatch(editProduct(newProductUpdate))
+        dispatch(editProduct(newProductUpdate))
     }
 
     return (
@@ -51,7 +51,7 @@ function Modal(props) {
                                         <th scope="col">Price</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Total</th>
-                                        <th scope="col">Actions</th>
+                                        {/* <th scope="col">Actions</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,9 +82,9 @@ function Modal(props) {
 
                                             >+</button>
                                         </td> */}
-                                        <td><input placeholder={item.quantity} /></td>
+                                        <td><input placeholder={item.quantity} className={classes.smallInput} onChange={(e) => setQuantity(e.target.value)} /></td>
                                         <td>{item.price * item.quantity}</td>
-                                        <td><button className="btn btn-info" ><i class="fas fa-undo"></i></button></td>
+                                        {/* <td><button className="btn btn-info" ><i class="fas fa-undo"></i></button></td> */}
                                     </tr>
                                 </tbody>
                             </table>
