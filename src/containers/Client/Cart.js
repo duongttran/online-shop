@@ -47,7 +47,6 @@ const Cart = (props) => {
 
             {/* <img src="https://www.svgrepo.com/show/58322/shopping-cart.svg" style={{ width: "50px" }} /> */}
 
-
             <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl" role="document">
                     <div className="modal-content">
@@ -71,7 +70,7 @@ const Cart = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {cartList.length > 0 ? renderCart() : <p style={{ margin: "30px auto" }}>There is no product in this cart</p>}
+                                    {cartList.length > 0 ? renderCart() : <tr style={{ margin: "30px auto" }}><td colspan="6" className="text-center">There is no product in this cart</td></tr>}
                                 </tbody>
                             </table>
 

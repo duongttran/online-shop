@@ -20,7 +20,6 @@ const Product = () => {
 
   const productList = useSelector(state => state.cRed.products);
   const loadingProduct = useSelector(state => state.cRed.loading);
-
   const loadingCart = useSelector(state => state.cartReducers.loading)
   console.log(loadingCart)
 
@@ -38,7 +37,7 @@ const Product = () => {
               onClick={() => dispatch(addItem(item))}
               disabled={loadingCart}>
 
-              {loadingCart && <i className="fas fa-spinner"></i>}
+
               <span>{loadingCart ? "Adding..." : "Add To Cart"}</span>
 
             </button>
@@ -51,7 +50,8 @@ const Product = () => {
   return (
     <div className="container">
       <div className="row">
-        {!loadingProduct ? displayProduct() : <Spinner />}
+        {!loadingProduct && !loadingCart ? displayProduct() : <Spinner />}
+
       </div>
     </div>
   )
