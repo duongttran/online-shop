@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addNewProduct } from '../../store/admin/actions/adminActions'
 
@@ -25,44 +25,70 @@ const Form = () => {
 
     return (
         <div>
-            <h3>Add Product to List</h3>
-            <form>
-                <div className="form-group">
-                    <label>Product Name</label>
-                    <input
-                        type="text"
-                        name="productName"
-                        placeholder="Product Name"
-                        onChange={(e) => setProductName(e.target.value)} />
-                    <input
-                        type="text"
-                        name="imageLink"
-                        placeholder="Image Link"
-                        onChange={(e) => setImageLink(e.target.value)} />
-                    <input
-                        type="number"
-                        name="price"
-                        placeholder="Price"
-                        onChange={(e) => setPrice(e.target.value)} />
-                    <input
-                        type="number"
-                        name="quantity"
-                        placeholder="Quantity"
-                        onChange={(e) => setQuantity(e.target.value)} />
-                    <input
-                        type="text"
-                        name="productID"
-                        placeholder="Product ID"
-                        onChange={(e) => setProductID(e.target.value)} />
+            <h3>Add products to List</h3>
+            <div className="container">
+                <div className="row">
 
-                    <button className="btn btn-primary" onClick={(e) => onSubmit(e)}>Submit</button>
+                    <form className={{ marginTop: "50px" }}>
+                        <div className="row">
+                            <div className="form-group col">
+                                <label>Product ID</label>
+                                <input
+                                    type="text"
+                                    name="productID"
+                                    placeholder="Product ID"
+                                    className="form-control"
+                                    onChange={(e) => setProductID(e.target.value)} />
+                            </div>
 
+                            <div className="form-group col">
+                                <label>Product Name</label>
+                                <input
+                                    type="text"
+                                    name="productName"
+                                    placeholder="Product Name"
+                                    className="form-control"
+                                    onChange={(e) => setProductName(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="form-group col">
+                                <label>Image Link</label>
+                                <input
+                                    type="text"
+                                    name="imageLink"
+                                    placeholder="Image Link"
+                                    className="form-control"
+                                    onChange={(e) => setImageLink(e.target.value)} />
+                            </div>
+                            <div className="form-group col">
+                                <label>Price</label>
+                                <input
+                                    type="number"
+                                    name="price"
+                                    placeholder="Price"
+                                    className="form-control"
+                                    onChange={(e) => setPrice(e.target.value)} />
+                            </div>
+
+                            <div className="form-group col">
+                                <label>Quantity</label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    placeholder="Quantity"
+                                    className="form-control"
+                                    onChange={(e) => setQuantity(e.target.value)} />
+                            </div>
+
+                            <div className="col">
+                                <button className="btn btn-primary btn-block" onClick={(e) => onSubmit(e)} style={{ marginTop: "30px" }}>Submit</button>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
-            </form>
-
-
-
-
+            </div>
         </div>
     )
 }

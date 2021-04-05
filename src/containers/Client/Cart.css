@@ -1,0 +1,35 @@
+.table td, .table th {
+    border-top: 0px!important;
+}
+
+.table thead th {
+    border-bottom: 0px!important;
+}
+
+.cartQuantity {
+    background-color: red;
+    border-radius: 100%;
+    width: 22px;
+    height: 22px;
+    color: white;
+    position: relative;
+    left: -10px;
+    text-align: center;
+    vertical-align: center;
+    top: -5px;
+
+}
+
+.cartNoProduct {
+    
+    border-radius: 100%;
+    width: 22px;
+    height: 22px;
+    color: transparent;
+    position: relative;
+    left: -10px;
+    text-align: center;
+    vertical-align: center;
+    top: -5px;
+    
+}

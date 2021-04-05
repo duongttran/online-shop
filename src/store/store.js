@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-//import reducer from './store/client/reducers/reducer.js'
 import { composeWithDevTools } from "redux-devtools-extension";
 import adminReducers from './admin/reducers/adminReducers'
 import clientReducers from './client/reducers/clientReducers'

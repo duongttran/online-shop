@@ -1,9 +1,9 @@
-import * as adminConstants from '../constants/adminContants'
 import axios from 'axios'
 
 import { fetchDataRequest } from '../../client/actions/clientActions'
 
 export const updateProductList = (id, productUpdate) => {
+    console.log("update product >>>>>>", productUpdate )
     return dispatch => {
         axios.put(`https://6067db8898f405001728f139.mockapi.io/product/${id}`, productUpdate)
             .then(res => {
@@ -23,8 +23,7 @@ export const increaseItem = (product) => {
 
         if (object !== undefined) {
             const idx = object.id
-            dispatch(updateProductList(idx, { ...product, quantity: parseInt(product.quantity) + 1 }))
-
+            dispatch(updateProductList(idx, { ...product, quantity: parseInt(object.quantity) + 1 }))
         }
         return
     }
@@ -34,15 +33,12 @@ export const decreaseItem = (product) => {
     console.log('product', product)
     return (dispatch, getState) => {
         //dispatch({ type: 'increase' })
-
         const { products } = getState().cRed;
         const object = products.find((item) => item.productID === product.productID);
 
-
         if (object !== undefined) {
             const idx = object.id
-            dispatch(updateProductList(idx, { ...product, quantity: parseInt(product.quantity) - 1 }))
-            //dispatch(getDataRequest())
+            dispatch(updateProductList(idx, { ...product, quantity: parseInt(object.quantity) - 1 }))
         }
         return
     }
@@ -53,7 +49,7 @@ export const removeItem = (product) => {
         const { products } = getState().cRed;
         const object = products.find((item) => item.productID === product.productID);
 
-        if (object !== undefined) { //object found
+        if (object !== undefined) { 
             const idx = object.id
             axios.delete(`https://6067db8898f405001728f139.mockapi.io/product/${idx}`, product).then((response) => {
                 dispatch(fetchDataRequest())
@@ -63,15 +59,14 @@ export const removeItem = (product) => {
         }
         return
     }
-
 }
-
 
 export const addNewProduct = (newProduct) => {
     return dispatch => {
         axios.post('https://6067db8898f405001728f139.mockapi.io/product/', newProduct)
             .then((response) => {
                 dispatch(fetchDataRequest())
+                alert(`${newProduct.name} has been added`)
             })
             .catch((error) => {
                 console.log(error)
@@ -80,16 +75,37 @@ export const addNewProduct = (newProduct) => {
 }
 
 export const editProduct = (product) => {
+    console.log("edit product")
     return (dispatch, getState) => {
         const { products } = getState().cRed;
         const object = products.find((item) => item.productID === product.productID);
 
         if (object !== undefined) {
             const idx = object.id
-            dispatch(updateProductList(idx, { ...product }))
-            //dispatch(getDataRequest())
+            console.log("object found ***")
+            dispatch(updateProductList(idx, 
+                { ...product, 
+                    name: product.name, 
+                    image: product.image,
+                    price: product.price,
+                    quantity: product.quantity,
+                    }))
         }
         return
     }
-
 }
+
+/* export const decreaseItem = (product) => {
+    console.log('product', product)
+    return (dispatch, getState) => {
+        //dispatch({ type: 'increase' })
+        const { products } = getState().cRed;
+        const object = products.find((item) => item.productID === product.productID);
+
+        if (object !== undefined) {
+            const idx = object.id
+            dispatch(updateProductList(idx, { ...product, quantity: parseInt(object.quantity) - 1 }))
+        }
+        return
+    }
+} */

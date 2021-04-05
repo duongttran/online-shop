@@ -2,19 +2,30 @@ import * as actionType from '../constants/cartConstants'
 
 const initialState = {
     cart: [],
+    loading: false,
     error: false
 }
 
 const cartReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case actionType.GET_DATA:
+        case actionType.GET_DATA_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+            
+        case actionType.GET_DATA_SUCCESS:
             state.cart = action.cart;
-            return { ...state }
+            return {
+                ...state,
+                loading: false
+            }
 
         case actionType.GET_DATA_FAILED:
             return {
                 ...state,
+                loading: false,
                 error: true
             }
 
@@ -22,7 +33,10 @@ const cartReducer = (state = initialState, action) => {
             const cartUpdate = [...state.cart];
             state.cart = cartUpdate;
             console.log("cartUpdate after add", cartUpdate)
-            return { ...state }
+            return {
+                ...state,
+                loading: true
+            }
 
         case actionType.CLEAR_ALL_ITEMS:
             state.cart = []

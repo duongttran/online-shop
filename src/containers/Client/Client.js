@@ -5,16 +5,13 @@ import Product from './Product'
 
 const Client = (props) => {
     return (
-        <div>
             <div className="container">
                 <div className="row mt-5 mb-5">
-                    <h1>Client page</h1>
+                    <h1 style={{textAlign: "center", margin: "0 auto 50px"}}>Client page</h1>
                     <Cart />
                     <Product />
                 </div>
             </div>
-
-        </div>
     )
 }
 

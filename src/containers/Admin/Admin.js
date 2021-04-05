@@ -7,8 +7,7 @@ import { fetchDataRequest } from '../../store/client/actions/clientActions'
 import Form from './Form'
 import Modal from './Modal'
 
-
-const Admin = (props) => {
+const Admin = () => {
 
   const [editProduct, setEditProduct] = useState([{}])
 
@@ -18,6 +17,7 @@ const Admin = (props) => {
   useEffect(() => {
     dispatch(fetchDataRequest())
   }, [])
+
 
   const renderProductList = () => {
     return productList.map((item, idx) => {
@@ -43,14 +43,15 @@ const Admin = (props) => {
     })
   }
 
-
   return (
-
+    
     <div className="container">
       <div className="row mt-5 mb-5">
-
-        <h1 className="">Admin page</h1>
-
+     
+        <h1 style={{textAlign: "center", margin: "0 auto 50px"}}>Admin</h1>
+        <Form />
+        <hr/>
+        <h3 style={{margin: "30px 0"}}>List</h3>
         <table className="table table-bordered">
           <thead className="thead-dark">
             <tr>
@@ -68,8 +69,7 @@ const Admin = (props) => {
           </tbody>
         </table>
 
-
-        <Form />
+        
         <Modal item={editProduct} />
 
       </div>

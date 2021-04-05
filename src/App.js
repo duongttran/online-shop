@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import './App.css'
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Admin, Client } from "./containers/"
@@ -8,9 +9,6 @@ import { Admin, Client } from "./containers/"
 function App() {
   return (
     <div className="App">
-      {/* <Header />
-      <Client />
-      <Footer /> */}
       <Router>
         <Header />
         <Switch>

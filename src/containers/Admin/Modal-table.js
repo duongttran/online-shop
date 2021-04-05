@@ -28,15 +28,6 @@ function Modal(props) {
         console.log("onUpdate newProductUpdate", newProductUpdate)
     }
 
-    const onHandleChange = (e) => {
-        e.preventDefault()
-        setProductID(e.target.value)
-        setProductName(e.target.value)
-        setImageLink(e.target.value)
-        setPrice(e.target.value)
-        setQuantity(e.target.value)
-    }
-
     return (
         <div>
             <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,6 +41,49 @@ function Modal(props) {
                         </div>
                         <div className="modal-body">
 
+                            {/* <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input onChange={(e) => setProductID(e.target.value)}
+                                            name="productID" placeholder={item.productID}/></td>
+
+                                        <td><input className={classes.input}
+                                            onChange={(e) => setProductName(e.target.value)}
+                                            name="productName"
+                                            placeholder={(item.name)} /></td>
+                                        <td>
+                                            <img src={item.image} alt={item.name} style={{ maxHeight: "50px" }} />
+                                            <input name="imageLink" onChange={(e) => setImageLink(e.target.value)} />
+                                        </td>
+                                        <td>
+                                            <input
+                                                placeholder={item.price}
+                                                type="number"
+                                                min="0"
+                                                onChange={(e) => setPrice(e.target.value)} /></td>
+                                        
+                                        <td>
+                                            <input 
+                                            className={classes.smallInput} 
+                                            placeholder={item.quantity} 
+                                            type="number"
+                                            min="0"
+                                            onChange={(e) => setQuantity(e.target.value)} /></td>
+
+                                       <td>{item.price * item.quantity}</td> 
+                                     <td><button className="btn btn-info" ><i class="fas fa-undo"></i></button></td> 
+                                    </tr>
+                                </tbody>
+                            </table> */}
                             <form className={{ marginTop: "50px" }}>
                                 <div className="row">
                                     <div className="form-group col">
@@ -59,7 +93,7 @@ function Modal(props) {
                                             name="productID"
                                             placeholder="Product ID"
                                             className="form-control"
-                                            onChange={onHandleChange} />
+                                            onChange={(e) => setProductID(e.target.value)} />
                                     </div>
 
                                     <div className="form-group col">
@@ -69,7 +103,8 @@ function Modal(props) {
                                             name="productName"
                                             placeholder="Product Name"
                                             className="form-control"
-                                            onChange={onHandleChange} />
+                                            onChange={(e) => setProductName(e.target.value)}
+                                        />
                                     </div>
 
                                     <div className="form-group col">
@@ -79,7 +114,7 @@ function Modal(props) {
                                             name="imageLink"
                                             placeholder="Image Link"
                                             className="form-control"
-                                            onChange={onHandleChange} />
+                                            onChange={(e) => setImageLink(e.target.value)} />
                                     </div>
                                     <div className="form-group col">
                                         <label>Price</label>
@@ -88,7 +123,7 @@ function Modal(props) {
                                             name="price"
                                             placeholder="Price"
                                             className="form-control"
-                                            onChange={onHandleChange} />
+                                            onChange={(e) => setPrice(e.target.value)} />
                                     </div>
 
                                     <div className="form-group col">
@@ -98,7 +133,7 @@ function Modal(props) {
                                             name="quantity"
                                             placeholder="Quantity"
                                             className="form-control"
-                                            onChange={onHandleChange} />
+                                            onChange={(e) => setQuantity(e.target.value)} />
                                     </div>
 
                                 </div>
