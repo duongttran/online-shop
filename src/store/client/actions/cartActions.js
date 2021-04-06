@@ -1,7 +1,6 @@
 import * as cartConstants from '../constants/cartConstants'
 import axios from 'axios'
 
-
 export const getDataSuccess = (cart) => {
     return {
         type: cartConstants.GET_DATA_SUCCESS,
@@ -9,20 +8,19 @@ export const getDataSuccess = (cart) => {
     }
 }
 
-export const getDataFailed = () => {
+export const getDataFailed = (error) => {
     return {
-        type: cartConstants.GET_DATA_FAILED
+        type: cartConstants.GET_DATA_FAILED, 
+        error
     }
 }
 
 export const getDataRequest = () => {
-    
     return dispatch => {
         dispatch({type: cartConstants.GET_DATA_REQUEST})
         axios.get("https://6067db8898f405001728f139.mockapi.io/cart")
             .then((response) => {
                 dispatch(getDataSuccess(response.data))
-                console.log("cart from getDataRequest", response.data)
             }).catch((error) => {
                 dispatch(getDataFailed())
             })
@@ -47,23 +45,19 @@ export const updateCart = (id, productUpdate) => {
 }
 
 export const addItem = (product) => {
-    console.log('product', product)
     return (dispatch, getState) => {
-
         const { cart } = getState().cartReducers;
         const object = cart.find((item) => item.productID === product.productID);
 
         if (object === undefined) {
-            console.log("didn't found object, product added")
             axios.post('https://6067db8898f405001728f139.mockapi.io/cart/', product)
                 .then((response) => {
-
                     dispatch(getDataRequest())
+                    //alert(`${product.name} has been added to the cart`)
                 }).catch((error) => {
                     console.log(error)
                 })
         } else {
-            console.log("object found! increase quantity!")
             const idx = object.id
             dispatch(updateCart(idx, { ...product, quantity: object.quantity + 1 }))
         }
@@ -90,9 +84,7 @@ export const removeItem = (product) => {
 }
 
 export const increaseItem = (product) => {
-    console.log('product', product)
     return (dispatch, getState) => {
-
         const { cart } = getState().cartReducers;
         const object = cart.find((item) => item.productID === product.productID);
 
@@ -106,9 +98,7 @@ export const increaseItem = (product) => {
 }
 
 export const decreaseItem = (product) => {
-    console.log('product', product)
     return (dispatch, getState) => {
-
         const { cart } = getState().cartReducers;
         const object = cart.find((item) => item.productID === product.productID);
 

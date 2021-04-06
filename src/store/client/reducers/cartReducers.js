@@ -14,7 +14,7 @@ const cartReducer = (state = initialState, action) => {
                 ...state,
                 loading: true
             }
-            
+
         case actionType.GET_DATA_SUCCESS:
             state.cart = action.cart;
             return {
@@ -32,11 +32,12 @@ const cartReducer = (state = initialState, action) => {
         case actionType.ADD_ITEM:
             const cartUpdate = [...state.cart];
             state.cart = cartUpdate;
-            console.log("cartUpdate after add", cartUpdate)
+          
             return {
                 ...state,
                 loading: true
             }
+
 
         case actionType.CLEAR_ALL_ITEMS:
             state.cart = []

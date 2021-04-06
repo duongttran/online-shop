@@ -1,31 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import classes from './Modal.module.css'
+
 import { editProduct } from '../../store/admin/actions/adminActions'
 
 
 function Modal(props) {
-    const [productName, setProductName] = useState("")
-    const [imageLink, setImageLink] = useState("")
-    const [price, setPrice] = useState("")
-    const [quantity, setQuantity] = useState("")
-    const [productID, setProductID] = useState("")
-
-    const dispatch = useDispatch()
 
     const { item } = props
 
+    const [inputValue, setInputValue] = useState({
+        name: '',
+        image: '',
+        quantity: '',
+        price: '',
+        productID: ''
+    })
+
+    useEffect(() => {
+        setInputValue({
+            name: item.name,
+            image: item.image,
+            quantity: item.quantity,
+            price: item.price,
+            productID: item.productID
+        })
+    }, [item])
+
+    const dispatch = useDispatch()
+
     const onUpdate = (e) => {
         e.preventDefault()
-        const newProductUpdate = {
-            name: productName,
-            image: imageLink,
-            quantity: parseInt(quantity),
-            price: parseInt(price),
-            productID,
-        }
-        dispatch(editProduct(newProductUpdate))
-        console.log("onUpdate newProductUpdate", newProductUpdate)
+        dispatch(editProduct(inputValue))
+    }
+
+    const onChangeHandler = (e) => {
+        e.preventDefault()
+        const { value, name } = e.target;
+        setInputValue({
+            ...inputValue,
+            [name]: value
+        })
     }
 
     return (
@@ -48,19 +62,20 @@ function Modal(props) {
                                         <input
                                             type="text"
                                             name="productID"
-                                            placeholder="Product ID"
+                                            value={inputValue.productID}
                                             className="form-control"
-                                            onChange={(e) => setProductID(e.target.value)} />
+                                            disabled
+                                            onChange={onChangeHandler} />
                                     </div>
 
                                     <div className="form-group col">
                                         <label>Product Name</label>
                                         <input
                                             type="text"
-                                            name="productName"
-                                            placeholder="Product Name"
+                                            name="name"
+                                            value={inputValue.name}
                                             className="form-control"
-                                            onChange={(e) => setProductName(e.target.value)}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
 
@@ -68,10 +83,10 @@ function Modal(props) {
                                         <label>Image Link</label>
                                         <input
                                             type="text"
-                                            name="imageLink"
-                                            placeholder="Image Link"
+                                            name="image"
+                                            value={inputValue.image}
                                             className="form-control"
-                                            onChange={(e) => setImageLink(e.target.value)}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                     <div className="form-group col">
@@ -79,9 +94,9 @@ function Modal(props) {
                                         <input
                                             type="number"
                                             name="price"
-                                            placeholder="Price"
+                                            value={inputValue.price}
                                             className="form-control"
-                                            onChange={(e) => setPrice(e.target.value)}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
 
@@ -90,9 +105,9 @@ function Modal(props) {
                                         <input
                                             type="number"
                                             name="quantity"
-                                            placeholder="Quantity"
+                                            value={inputValue.quantity}
                                             className="form-control"
-                                            onChange={(e) => setQuantity(e.target.value)}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
 
@@ -103,7 +118,7 @@ function Modal(props) {
 
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-warning" onClick={(e, item) => onUpdate(e, item)} data-dismiss="modal">Update</button>
+                            <button className="btn btn-warning" data-dismiss="modal" onClick={onUpdate} >Update</button>
                         </div>
                     </div>
                 </div>

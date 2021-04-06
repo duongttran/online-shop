@@ -1,17 +1,16 @@
 import React from 'react'
-
-import classes from './Header.module.css'
+import './Header.css'
 import logo from '../../assets/tgdd_logo_0.png';
 
 import { Link, withRouter } from "react-router-dom";
 
-const Header = (props) => {
+const Header = () => {
   return (
-    <div className="navigation">
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+    <div className="navigation fixed-top">
+      <nav className="navbar navbar-expand navbar-dark bg-dark" >
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <img src={logo} alt="logo of the site" className={classes.logo} />
+            <img src={logo} alt="logo of the site" className="logo" />
           </Link>
           <div>
             <ul className="navbar-nav ml-auto">

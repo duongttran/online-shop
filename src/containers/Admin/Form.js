@@ -21,6 +21,7 @@ const Form = () => {
             productID,
         };
         dispatch(addNewProduct(newProduct));
+        
     };
 
     return (
@@ -35,6 +36,7 @@ const Form = () => {
                                 <label>Product ID</label>
                                 <input
                                     type="text"
+                                    id="inputCell"
                                     name="productID"
                                     placeholder="Product ID"
                                     className="form-control"
@@ -82,7 +84,7 @@ const Form = () => {
                             </div>
 
                             <div className="col">
-                                <button className="btn btn-primary btn-block" onClick={(e) => onSubmit(e)} style={{ marginTop: "30px" }}>Submit</button>
+                                <button className="btn btn-primary btn-block" onClick={(e) => onSubmit(e)} style={{ marginTop: "30px" }} type="submit" value="Submit">Submit</button>
                             </div>
 
                         </div>

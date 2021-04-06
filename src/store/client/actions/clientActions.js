@@ -17,7 +17,7 @@ export const fetchDataFailed = (error) => {
 
 export const fetchDataRequest = () => {
     return dispatch => {
-        dispatch({type: clientConstants.FETCH_DATA_REQUEST})
+        dispatch({ type: clientConstants.FETCH_DATA_REQUEST })
         axios.get("https://6067db8898f405001728f139.mockapi.io/product")
             .then((response) => {
                 console.log('fetch data from clientActions', response.data)

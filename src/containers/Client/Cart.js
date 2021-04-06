@@ -4,12 +4,9 @@ import { increaseItem, decreaseItem, removeItem } from '../../store/client/actio
 
 import './Cart.css'
 
-const Cart = (props) => {
+const Cart = () => {
 
     const { cart: cartList } = useSelector(state => state.cartReducers)
-    const loadingCart = useSelector(state => state.cartReducers.loading)
-
-    console.log('cartList', cartList)
 
     const dispatch = useDispatch()
 
@@ -20,7 +17,7 @@ const Cart = (props) => {
                     <td>{(item.productID)}</td>
                     <td>{item.name}</td>
                     <td><img src={item.image} alt={item.name} style={{ maxHeight: "50px" }} /></td>
-                    <td>{item.price}</td>
+                    <td>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}</td>
                     <td>
                         <button
                             className="btn btn-success"
@@ -32,7 +29,7 @@ const Cart = (props) => {
                             onClick={() => dispatch(increaseItem(item))}
                         >+</button>
                     </td>
-                    <td>{item.price * item.quantity}</td>
+                    <td>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price * item.quantity)}</td>
                     <td><button className="btn btn-danger" onClick={() => dispatch(removeItem(item))}>x</button></td>
                 </tr>
             )
@@ -41,9 +38,10 @@ const Cart = (props) => {
 
     return (
         <>
-            <i data-toggle="modal" data-target="#exampleModal" style={{ color: "goldenrod", fontSize: "40px", cursor: "pointer" }} className="fas fa-shopping-cart"></i>
+            <i data-toggle="modal" data-target="#exampleModal" style={{ color: "mediumturquoise", fontSize: "40px", cursor: "pointer" }} className="fas fa-shopping-cart"></i>
             {cartList.length > 0 ?
-                <span className="cartQuantity">{cartList.length}</span> : <span className="cartNoProduct">{cartList.length}</span>}
+                <span className="cartQuantity">{cartList.length}</span> :
+                <span className="cartNoProduct">{cartList.length}</span>}
 
             {/* <img src="https://www.svgrepo.com/show/58322/shopping-cart.svg" style={{ width: "50px" }} /> */}
 
@@ -70,7 +68,7 @@ const Cart = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {cartList.length > 0 ? renderCart() : <tr style={{ margin: "30px auto" }}><td colspan="6" className="text-center">There is no product in this cart</td></tr>}
+                                    {cartList.length > 0 ? renderCart() : <tr style={{ margin: "30px auto" }}><td colSpan="6" className="text-center">There is no product in this cart</td></tr>}
                                 </tbody>
                             </table>
 

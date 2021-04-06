@@ -1,7 +1,7 @@
 import React from 'react'
 import './Footer.css'
 
-const Footer = (props) => {
+const Footer = () => {
   return (
     <div className="footer">
       <footer className="py-2 bg-dark fixed-bottom">

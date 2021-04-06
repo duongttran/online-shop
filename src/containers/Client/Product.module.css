@@ -6,7 +6,7 @@
 .productBox {
     border: rgb(238, 238, 238) 1px solid;
     padding: 30px;
-    min-height: 370px;
+    min-height:400px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 1px 1px 2px rgb(222, 222, 222);

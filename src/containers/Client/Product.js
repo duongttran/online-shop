@@ -7,8 +7,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addItem, getDataRequest } from '../../store/client/actions/cartActions'
 import Spinner from '../../components/Spinner/Spinner'
 
-
-
 const Product = () => {
 
   const dispatch = useDispatch()
@@ -20,8 +18,7 @@ const Product = () => {
 
   const productList = useSelector(state => state.cRed.products);
   const loadingProduct = useSelector(state => state.cRed.loading);
-  const loadingCart = useSelector(state => state.cartReducers.loading)
-  console.log(loadingCart)
+  //const loadingCart = useSelector(state => state.cartReducers.loading)
 
   const displayProduct = () => {
     return productList.map((item, idx) => {
@@ -29,17 +26,13 @@ const Product = () => {
         <div className="col-4 text-center mb-4" key={'item' + idx}>
           <div className={classes.productBox} >
             <h3>{item.name}</h3>
-            <img className={classes.productImage} src={item.image} alt={item.name} />
-            <h5>Price: {item.price}</h5>
+            <img style={{margin: "10px 0"}} className={classes.productImage} src={item.image} alt={item.name} />
+            <h5 style={{margin: "10px 0"}}>Price: {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}</h5>
             <p>Quantity: {item.quantity}</p>
             <button
               className="btn btn-danger btn-block"
-              onClick={() => dispatch(addItem(item))}
-              disabled={loadingCart}>
-
-
-              <span>{loadingCart ? "Adding..." : "Add To Cart"}</span>
-
+              onClick={() => dispatch(addItem(item))}>
+              <span>Add To Cart</span>
             </button>
           </div>
         </div>
@@ -50,8 +43,7 @@ const Product = () => {
   return (
     <div className="container">
       <div className="row">
-        {!loadingProduct && !loadingCart ? displayProduct() : <Spinner />}
-
+        {!loadingProduct ? displayProduct() : <Spinner /> }
       </div>
     </div>
   )

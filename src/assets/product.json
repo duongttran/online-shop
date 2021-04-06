@@ -37,5 +37,13 @@
         "quantity": 1,
         "price": 2690000,
         "productID": "productID 5"
+    },
+    {
+        "id": "6",
+        "name": "iPhone 11",
+        "image": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-600x600-600x600.jpg",
+        "quantity": 1,
+        "price": 16310000,
+        "productID": "productID 6"
     }
 ]
